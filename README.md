@@ -19,6 +19,10 @@ You get a deck of cards with different items such as "Tulip", "Volkswagen", or "
 
 ![Screenshot of the game](./public/screenshot-desktop-game.png)
 
+### Mobile Screenshots
+![Screenshot of the home page on mobile](./public/screenshot-mobile.png)
+![Screenshot of the game on mobile](./public/screenshot-mobile-game.png)
+
 ## Difficulty Levels
 
 - **Easy:** Familiar topics like Animals, Cars, Fruits
