@@ -19,6 +19,30 @@ export const metadata: Metadata = {
   description:
     "A strategic card game where you organize cards by matching them to their topics. Think solitaire meets categorization!",
   manifest: "/manifest.json",
+  openGraph: {
+    title: "Topic Solitaire",
+    description:
+      "A strategic card game where you organize cards by matching them to their topics. Think solitaire meets categorization!",
+    url: "https://topic-solitaire.vercel.app",
+    siteName: "Topic Solitaire",
+    images: [
+      {
+        url: "/og-image.svg",
+        width: 1200,
+        height: 630,
+        alt: "Topic Solitaire - Strategic Card Matching Game",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Topic Solitaire",
+    description:
+      "A strategic card game where you organize cards by matching them to their topics. Think solitaire meets categorization!",
+    images: ["/og-image.svg"],
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
