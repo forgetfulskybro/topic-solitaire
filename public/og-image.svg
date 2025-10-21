@@ -1,11 +1,11 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background with green color matching the game -->
+  <!-- Background green color -->
   <rect width="1200" height="630" fill="#0e8845"/>
   
   <!-- Grid lines -->
   <defs>
     <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(52, 52, 52, 0.175)" stroke-width="1"/>
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#095D2F" stroke-width="1"/>
     </pattern>
   </defs>
   <rect width="1200" height="630" fill="url(#grid)"/>
@@ -69,22 +69,22 @@
   </g>
   
   <!-- Deck -->
-  <g transform="translate(980, 120)">
-    <!-- Card back -->    
-    <g transform="translate(-2, -1)">
-      <image 
-      width="117" 
-      height="162" 
-      href="https://topic-solitaire.vercel.app/cardBack.png" 
-    />
-    </g>
-    
+  <g transform="translate(980, 120)"> 
     <!-- Multiple card layers -->
-    <rect x="8" y="8" width="112" height="160" fill="url(#cardBack)" rx="8" stroke="#ffffff" stroke-width="0.5"/>
-    <rect x="6" y="6" width="112" height="160" fill="url(#cardBack)" rx="8" stroke="#ffffff" stroke-width="0.5"/>
-    <rect x="4" y="4" width="112" height="160" fill="url(#cardBack)" rx="8" stroke="#ffffff" stroke-width="0.5"/>
-    <rect x="2" y="2" width="112" height="160" fill="url(#cardBack)" rx="8" stroke="#ffffff" stroke-width="0.5"/>
-    <rect x="0" y="0" width="112" height="160" fill="url(#cardBack)" rx="8" stroke="#ffffff" stroke-width="0.5"/>
+    <rect x="0" y="4" width="112" height="160" fill="#fffdf8" rx="8" stroke="#ccc" stroke-width="1"/>
+    <rect x="0" y="2" width="112" height="160" fill="#fffdf8" rx="8" stroke="#ccc" stroke-width="1"/>
+    <rect x="0" y="0" width="112" height="160" fill="#fffdf8" rx="8" stroke="#ccc" stroke-width="1"/>
+    <rect x="0" y="-2" width="112" height="160" fill="#fffdf8" rx="8" stroke="#ccc" stroke-width="1"/>
+    <rect x="0" y="-4" width="112" height="160" fill="#fffdf8" rx="8" stroke="#ccc" stroke-width="1"/>
+
+    <!-- Card back -->    
+    <g transform="translate(5, -14)">
+      <image 
+        width="102" 
+        height="180" 
+        href="https://topic-solitaire.vercel.app/cardBack.png" 
+      />
+    </g>
   </g>
   
   <!-- Bottom Row -->
@@ -130,7 +130,13 @@
       <rect x="0" y="0" width="112" height="160" fill="#fffdf8" rx="8" stroke="#FFD700" stroke-width="2"/>
       <text x="56" y="85" text-anchor="middle" fill="#B8860B" font-family="Arial, sans-serif" font-size="20" font-weight="600">Animals</text>
       <!-- Gold crown -->
-      <text x="96" y="25" text-anchor="middle" fill="#FFD700" font-family="Arial, sans-serif" font-size="12">👑</text>
+      <g transform="translate(80, 12)">
+        <image 
+      width="25" 
+      height="25" 
+      href="https://topic-solitaire.vercel.app/crownGold.png" 
+      />
+      </g>
     </g>
     
     <!-- Stack 3 -->
