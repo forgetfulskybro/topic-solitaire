@@ -4,7 +4,7 @@ const nextConfig = {
     optimizeCss: false,
   },
   compiler: {
-    removeConsole: true,
+    removeConsole: process.env.NODE_ENV === "production",
   },
 };
 

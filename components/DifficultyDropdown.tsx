@@ -123,7 +123,13 @@ export const DifficultyDropdown: React.FC<DifficultyDropdownProps> = ({
         animate={{ rotate: isOpen ? 90 : 0 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
-        <Image style={{ marginTop: "5px" }} src={Chevron} alt="Chevron" width={26} height={16} />
+        <Image
+          style={{ marginTop: "5px" }}
+          src={Chevron}
+          alt="Chevron"
+          width={26}
+          height={16}
+        />
       </motion.span>
       <AnimatePresence>
         {isOpen && (
@@ -140,10 +146,9 @@ export const DifficultyDropdown: React.FC<DifficultyDropdownProps> = ({
               background:
                 "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%)",
               border: "1px solid rgba(255, 255, 255, 0.4)",
-              borderTop: "none",
-              borderRadius: "0 0 12px 12px",
+              borderRadius: "12px",
               zIndex: 10,
-              marginTop: "2px",
+              marginTop: "8px",
               overflow: "hidden",
               backdropFilter: "blur(15px)",
               boxShadow: "0 8px 24px rgba(0, 0, 0, 0.15)",
