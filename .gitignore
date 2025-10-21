@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+.vscode
+.gitignore
 
 # debug
 npm-debug.log*
