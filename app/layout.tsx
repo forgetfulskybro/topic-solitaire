@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "Topic Solitaire",
     images: [
       {
-        url: "/og-image.svg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Topic Solitaire - Strategic Card Matching Game",
