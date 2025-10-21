@@ -200,19 +200,23 @@ function GameContent() {
 
   const handleRefreshField = () => {
     if (deckCards.length === 0 || !bottomStacksEmpty) return;
+    const topStackCards = stacks
+      .filter((s) => s.isTopic)
+      .flatMap((stack) => stack.cards);
 
-    const cardsInPlay = stacks.flatMap((stack) => stack.cards);
-    const availableTopicCards = topicCards.filter(
-      (topic) => !cardsInPlay.includes(topic)
-    );
-    const availableRegularCards = deckCards.filter(
-      (card) => !cardsInPlay.includes(card)
-    );
+    const availableRegularCards = [
+      ...deckCards.filter((card) => !topicCards.includes(card)),
+      ...flatCards.filter(
+        (card) => !topStackCards.includes(card) && !topicCards.includes(card)
+      ),
+    ];
 
-    const { placeholderCards: newCards } = distributePlaceholderCards(
-      availableRegularCards,
-      availableTopicCards
-    );
+    const uniqueAvailableRegularCards = [...new Set(availableRegularCards)];
+    const { placeholderCards: newCards, deckCards: newDeckCards } =
+      distributePlaceholderCards(
+        uniqueAvailableRegularCards,
+        []
+      );
 
     setStacks((prev) =>
       prev.map((s) => {
@@ -222,9 +226,10 @@ function GameContent() {
       })
     );
 
-    const usedCards = newCards.flat();
-    const remainingDeck = deckCards.filter((card) => !usedCards.includes(card));
-    setDeckCards(remainingDeck);
+    const topicCardsInDeck = deckCards.filter((card) =>
+      topicCards.includes(card)
+    );
+    setDeckCards([...newDeckCards, ...topicCardsInDeck]);
     setMoves((prev) => prev - 1);
   };
 

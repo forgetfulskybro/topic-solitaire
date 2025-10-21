@@ -1,5 +1,5 @@
-import { mediumTopics } from "./mediumTopics";
 import { easyTopics } from "./easyTopics";
+import { mediumTopics } from "./mediumTopics";
 import { hardTopics } from "./hardTopics";
 
 export function getRandomNumber(max: number): number {
@@ -224,20 +224,41 @@ function ensureWinnableSetup(
     if (topicInDeck >= 0) {
       const topic = deck.splice(topicInDeck, 1)[0];
 
-      let minStack = 0;
-      for (let i = 1; i < 4; i++) {
-        if (stacks[i].length < stacks[minStack].length) {
-          minStack = i;
+      const topicAlreadyInStacks = stacks.some((stack) =>
+        stack.some((card) => card === topic)
+      );
+
+      if (!topicAlreadyInStacks) {
+        let minStack = 0;
+        for (let i = 1; i < 4; i++) {
+          if (stacks[i].length < stacks[minStack].length) {
+            minStack = i;
+          }
         }
+        stacks[minStack].push(topic);
+      } else {
+        deck.push(topic);
       }
-      stacks[minStack].push(topic);
     }
   }
 
   separateTopicRelatedCards(stacks);
 
+  const cardsInStacks = new Set<string>();
+  for (const stack of stacks) {
+    for (const card of stack) {
+      if (topicCards.includes(card)) {
+        cardsInStacks.add(card);
+      }
+    }
+  }
+
+  const filteredDeck = deck.filter(
+    (card) => !topicCards.includes(card) || !cardsInStacks.has(card)
+  );
+
   return {
     placeholderCards: stacks,
-    deckCards: deck,
+    deckCards: filteredDeck,
   };
 }
