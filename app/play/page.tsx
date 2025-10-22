@@ -193,46 +193,6 @@ function GameContent() {
     setMoves((prev) => prev - 1);
   };
 
-  const bottomStacksEmpty = useMemo(() => {
-    const bottomStacks = stacks.filter((s) => !s.isTopic);
-    return bottomStacks.every((stack) => stack.cards.length === 0);
-  }, [stacks]);
-
-  const handleRefreshField = () => {
-    if (deckCards.length === 0 || !bottomStacksEmpty) return;
-    const topStackCards = stacks
-      .filter((s) => s.isTopic)
-      .flatMap((stack) => stack.cards);
-
-    const availableRegularCards = [
-      ...deckCards.filter((card) => !topicCards.includes(card)),
-      ...flatCards.filter(
-        (card) => !topStackCards.includes(card) && !topicCards.includes(card)
-      ),
-    ];
-
-    const uniqueAvailableRegularCards = [...new Set(availableRegularCards)];
-    const { placeholderCards: newCards, deckCards: newDeckCards } =
-      distributePlaceholderCards(
-        uniqueAvailableRegularCards,
-        []
-      );
-
-    setStacks((prev) =>
-      prev.map((s) => {
-        if (s.isTopic) return s;
-        const index = parseInt(s.id.slice(-1)) - 1;
-        return { ...s, cards: newCards[index] || [] };
-      })
-    );
-
-    const topicCardsInDeck = deckCards.filter((card) =>
-      topicCards.includes(card)
-    );
-    setDeckCards([...newDeckCards, ...topicCardsInDeck]);
-    setMoves((prev) => prev - 1);
-  };
-
   useEffect(() => {
     const handleCardDropped = (event: Event) => {
       const customEvent = event as CustomEvent<{
@@ -315,8 +275,6 @@ function GameContent() {
             deckCards={deckCards}
             onDrawCard={handleDrawCard}
             onReturnCards={handleReturnCards}
-            onRefreshField={handleRefreshField}
-            showRefreshButton={bottomStacksEmpty && deckCards.length > 0}
           />
         </motion.main>
       ) : (
@@ -410,8 +368,6 @@ function GameContent() {
               topicCards={topicCards}
               onDrawCard={handleDrawCard}
               onReturnCards={handleReturnCards}
-              onRefreshField={handleRefreshField}
-              showRefreshButton={bottomStacksEmpty && deckCards.length > 0}
             />
           </div>
 

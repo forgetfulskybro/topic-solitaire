@@ -11,8 +11,6 @@ interface MobileGameLayoutProps {
   deckCards: string[];
   onDrawCard: () => void;
   onReturnCards: (cards: string[]) => void;
-  onRefreshField?: () => void;
-  showRefreshButton?: boolean;
 }
 
 export const MobileGameLayout: React.FC<MobileGameLayoutProps> = ({
@@ -21,8 +19,6 @@ export const MobileGameLayout: React.FC<MobileGameLayoutProps> = ({
   deckCards,
   onDrawCard,
   onReturnCards,
-  onRefreshField,
-  showRefreshButton = false,
 }) => {
   return (
     <div
@@ -45,8 +41,6 @@ export const MobileGameLayout: React.FC<MobileGameLayoutProps> = ({
           topicCards={topicCards}
           onDrawCard={onDrawCard}
           onReturnCards={onReturnCards}
-          onRefreshField={onRefreshField}
-          showRefreshButton={showRefreshButton}
         />
       </div>
 

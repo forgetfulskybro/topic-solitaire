@@ -15,7 +15,6 @@ You get a deck of cards with different items such as "Tulip", "Volkswagen", or "
 - Topic cards (with the little crown & gold border) go in the top row
 - Regular cards get matched to their topics
 - Draw wisely - make sure to pay attention to which cards are drawn
-- When the bottom card piles are empty, you can refresh the field with new cards
 
 ![Screenshot of the game](./public/screenshot-desktop-game.png)
 

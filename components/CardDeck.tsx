@@ -12,8 +12,6 @@ interface CardDeckProps {
   topicCards: string[];
   onDrawCard: () => void;
   onReturnCards: (cards: string[]) => void;
-  onRefreshField?: () => void;
-  showRefreshButton?: boolean;
 }
 
 export const CardDeck: React.FC<CardDeckProps> = ({
@@ -21,8 +19,6 @@ export const CardDeck: React.FC<CardDeckProps> = ({
   topicCards,
   onDrawCard,
   onReturnCards,
-  onRefreshField,
-  showRefreshButton = false,
 }) => {
   const [drawnCards, setDrawnCards] = useState<string[]>([]);
   const [animatingCard, setAnimatingCard] = useState<string | null>(null);
@@ -406,36 +402,6 @@ export const CardDeck: React.FC<CardDeckProps> = ({
           </div>
         )}
       </div>
-
-      {showRefreshButton && (
-        <div
-          style={{
-            position: "absolute",
-            top: "170px",
-            left: "50%",
-            transform: "translateX(-50%)",
-          }}
-        >
-          <button
-            onClick={onRefreshField}
-            style={{
-              background: "none",
-              border: "1px solid rgba(255, 255, 255, 0.8)",
-              color: "white",
-              padding: "6px 12px",
-              borderRadius: "6px",
-              cursor: "pointer",
-              fontSize: "0.9em",
-              fontWeight: 500,
-              transition: "all 0.2s ease",
-              backgroundColor: "rgba(0, 0, 0, 0.7)",
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
-            }}
-          >
-            Refresh Field
-          </button>
-        </div>
-      )}
     </div>
   );
 };

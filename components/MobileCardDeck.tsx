@@ -12,8 +12,6 @@ interface MobileCardDeckProps {
   topicCards: string[];
   onDrawCard: () => void;
   onReturnCards: (cards: string[]) => void;
-  onRefreshField?: () => void;
-  showRefreshButton?: boolean;
 }
 
 export const MobileCardDeck: React.FC<MobileCardDeckProps> = ({
@@ -21,8 +19,6 @@ export const MobileCardDeck: React.FC<MobileCardDeckProps> = ({
   topicCards,
   onDrawCard,
   onReturnCards,
-  onRefreshField,
-  showRefreshButton = false,
 }) => {
   const [drawnCards, setDrawnCards] = useState<string[]>([]);
   const [animatingCard, setAnimatingCard] = useState<string | null>(null);
@@ -368,28 +364,6 @@ export const MobileCardDeck: React.FC<MobileCardDeckProps> = ({
           </div>
         )}
       </div>
-
-      {showRefreshButton && (
-        <button
-          onClick={onRefreshField}
-          style={{
-            background: "none",
-            border: "1px solid rgba(255, 255, 255, 0.8)",
-            color: "white",
-            padding: "3px 6px",
-            borderRadius: "4px",
-            cursor: "pointer",
-            fontSize: "0.6em",
-            fontWeight: 500,
-            transition: "all 0.2s ease",
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
-            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
-            minWidth: "50px",
-          }}
-        >
-          Refresh
-        </button>
-      )}
     </div>
   );
 };
