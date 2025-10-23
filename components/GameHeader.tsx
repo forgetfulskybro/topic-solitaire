@@ -1,7 +1,11 @@
 import { useMobileDetection } from "./useMobileDetection";
+import Chevron from "@/public/chevron.svg";
+import Restart from "@/public/restart.svg";
 import { Difficulty } from "./topicUtils";
 import { GameGuide } from "./GameGuide";
 import React, { useState } from "react";
+import Guide from "@/public/guide.svg";
+import Image from "next/image";
 
 interface GameHeaderProps {
   difficulty: Difficulty;
@@ -34,29 +38,80 @@ export const GameHeader: React.FC<GameHeaderProps> = ({
         isMobile={isMobile}
       />
       <div className="fixed-header">
-        <span
+        <div
           style={{
             color: "white",
             fontSize: isMobile ? "0.8em" : "1em",
             fontWeight: 600,
             whiteSpace: "nowrap",
+            marginBottom: isMobile ? "6px" : "8px",
+            textAlign: isMobile ? "center" : "left",
+            width: "100%",
           }}
         >
-          {isMobile
-            ? difficulty.charAt(0).toUpperCase() + difficulty.slice(1)
-            : `Difficulty: ${
-                difficulty.charAt(0).toUpperCase() + difficulty.slice(1)
-              }`}
-        </span>
-        <button onClick={handleGuide} className="game-button">
-          {isMobile ? "📖" : "📖 Guide"}
-        </button>
-        <button onClick={handleRestart} className="game-button">
-          {isMobile ? "↻" : "↻ Restart"}
-        </button>
-        <button onClick={handleBack} className="game-button">
-          {isMobile ? "←" : "← Back"}
-        </button>
+          {!isMobile &&
+            `Difficulty: ${
+              difficulty.charAt(0).toUpperCase() + difficulty.slice(1)
+            }`}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: isMobile ? "row" : "column",
+            gap: isMobile ? "4px" : "6px",
+            marginLeft: isMobile ? "-7px" : "0p",
+            width: "100%",
+          }}
+        >
+          <button
+            onClick={handleGuide}
+            className="game-button"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: isMobile ? "center" : "flex-start",
+              gap: "4px",
+              minWidth: isMobile ? "auto" : "80px",
+            }}
+          >
+            <Image src={Guide} alt="Chevron" width={26} height={16} />
+            {!isMobile && <span>Guide</span>}
+          </button>
+          <button
+            onClick={handleRestart}
+            className="game-button"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: isMobile ? "center" : "flex-start",
+              gap: "4px",
+              minWidth: isMobile ? "auto" : "80px",
+            }}
+          >
+            <Image src={Restart} alt="Chevron" width={26} height={16} />
+            {!isMobile && <span>Restart</span>}
+          </button>
+          <button
+            onClick={handleBack}
+            className="game-button"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: isMobile ? "center" : "flex-start",
+              gap: "4px",
+              minWidth: isMobile ? "auto" : "80px",
+            }}
+          >
+            <Image
+              style={{ rotate: "180deg" }}
+              src={Chevron}
+              alt="Chevron"
+              width={26}
+              height={16}
+            />
+            {!isMobile && <span>Back</span>}
+          </button>
+        </div>
       </div>
 
       <div className="moves-banner">

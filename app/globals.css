@@ -96,14 +96,14 @@ a {
   display: flex;
   flex-flow: row wrap;
   gap: 10px;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .titleGrid {
   display: flex;
   flex-flow: row wrap;
   gap: 10px;
-  overflow-y: auto;
+  overflow: hidden;
   margin-top: 1rem;
 }
 
@@ -168,7 +168,7 @@ a {
   font-weight: bold;
   user-select: none;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 8px;
 }
 
@@ -240,17 +240,7 @@ a {
 }
 
 @media (max-width: 768px) {
-  body {
-    touch-action: manipulation;
-    -webkit-overflow-scrolling: touch;
-  }
 
-  [data-drag] {
-    touch-action: none;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
-  }
 
   .cardPlaceholder {
     touch-action: manipulation;
@@ -348,8 +338,8 @@ a {
 }
 
 .game-button {
-  background: none;
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   color: white;
   padding: 6px 12px;
   border-radius: 6px;
@@ -464,9 +454,12 @@ a {
   .guideModal {
     padding: 24px 20px !important;
     margin: 20px;
-    max-height: 90vh !important;
+    max-height: 70vh !important;
     width: calc(100vw - 40px) !important;
     max-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    position: relative !important;
+    z-index: 9000 !important;
   }
 
   .guideModal h1 {

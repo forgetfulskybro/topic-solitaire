@@ -13,6 +13,7 @@ export const GameGuide: React.FC<GameGuideProps> = ({
   onClose,
   isMobile,
 }) => {
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -23,7 +24,10 @@ export const GameGuide: React.FC<GameGuideProps> = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          style={{ zIndex: 50000 }}
+          style={{
+            zIndex: 9000,
+            touchAction: isMobile ? "none" : "auto",
+          }}
         >
           <motion.div
             initial={{ scale: 0.3, opacity: 0, y: 50 }}
@@ -38,19 +42,24 @@ export const GameGuide: React.FC<GameGuideProps> = ({
             }}
             className="guideModal"
             onClick={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+            onTouchEnd={(e) => e.stopPropagation()}
             style={{
               background: "linear-gradient(135deg, #1e293b 0%, #334155 100%)",
               boxShadow:
                 "0 20px 60px rgba(0, 0, 0, 0.4), 0 8px 32px rgba(0, 0, 0, 0.3)",
-              borderRadius: "20px",
-              padding: "32px",
-              maxWidth: "90vw",
-              maxHeight: "85vh",
-              width: "600px",
+              borderRadius: isMobile ? "16px" : "20px",
+              padding: isMobile ? "24px 20px" : "32px",
+              maxWidth: isMobile ? "calc(100vw - 40px)" : "90vw",
+              maxHeight: isMobile ? "85vh" : "85vh",
+              width: isMobile ? "auto" : "600px",
               overflowY: "auto",
+              WebkitOverflowScrolling: "touch",
               position: "relative",
               border: "1px solid rgba(255, 255, 255, 0.1)",
-              zIndex: 50001,
+              zIndex: 9000,
+              touchAction: "pan-y",
             }}
           >
             <button

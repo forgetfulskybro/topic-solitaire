@@ -70,6 +70,8 @@ export const CardStack: React.FC<CardStackProps> = ({
   );
   const [completingTopic, setCompletingTopic] = useState<boolean>(false);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
+  const [newlyPlacedCard, setNewlyPlacedCard] = useState<string | null>(null);
+  const [previousCardCount, setPreviousCardCount] = useState<number>(0);
 
   useEffect(() => {
     if (cardsList.length === 0 && isCompleted) {
@@ -77,6 +79,22 @@ export const CardStack: React.FC<CardStackProps> = ({
       setCompletingTopic(false);
     }
   }, [cardsList.length, isCompleted]);
+
+  useEffect(() => {
+    if (
+      isTopic &&
+      cardsList.length > previousCardCount &&
+      cardsList.length > 0
+    ) {
+      const newCard = cardsList[cardsList.length - 1];
+      setNewlyPlacedCard(newCard);
+
+      setTimeout(() => {
+        setNewlyPlacedCard(null);
+      }, 600);
+    }
+    setPreviousCardCount(cardsList.length);
+  }, [cardsList.length, isTopic, previousCardCount, cardsList]);
 
   useEffect(() => {
     const currentTopCard =
@@ -324,6 +342,12 @@ export const CardStack: React.FC<CardStackProps> = ({
                     rotateY: 180,
                     opacity: 1,
                   }
+                : newlyPlacedCard === card && isTopic && isTopCard
+                ? {
+                    scale: 1.2,
+                    y: -20,
+                    opacity: 0.8,
+                  }
                 : {}
             }
             animate={
@@ -337,12 +361,26 @@ export const CardStack: React.FC<CardStackProps> = ({
                     rotateY: [180, 0],
                     opacity: 1,
                   }
+                : newlyPlacedCard === card && isTopic && isTopCard
+                ? {
+                    scale: [1.2, 1],
+                    y: [-20, 0],
+                    opacity: [0.8, 1],
+                  }
                 : {}
             }
             transition={{
-              duration: completingTopic ? 0.6 : 0.6,
-              ease: "easeInOut",
-              delay: completingTopic ? cidx * 0.05 : 0,
+              duration: completingTopic
+                ? 2.5
+                : newlyPlacedCard === card && isTopic
+                ? 0.5
+                : 0.6,
+              ease: completingTopic
+                ? "easeInOut"
+                : newlyPlacedCard === card && isTopic
+                ? "easeOut"
+                : "easeInOut",
+              delay: completingTopic ? cidx * 0.1 : 0,
             }}
             onMouseDown={
               shouldShowFaceUp && !isTopic
