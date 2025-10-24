@@ -12,7 +12,16 @@ const urlsToCache = [
   "/chevron.svg",
 ];
 
+const isLocalhost =
+  self.location.hostname === "localhost" ||
+  self.location.hostname === "127.0.0.1" ||
+  self.location.port === "3000";
+
 self.addEventListener("install", (event) => {
+  if (isLocalhost) {
+    return;
+  }
+
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
   );
@@ -23,7 +32,12 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  if (event.request.url.includes('/_next/static/')) {
+  if (event.request.url.includes("/_next/static/")) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
+  if (isLocalhost) {
     event.respondWith(fetch(event.request));
     return;
   }

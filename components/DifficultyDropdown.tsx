@@ -73,7 +73,7 @@ export const DifficultyDropdown: React.FC<DifficultyDropdownProps> = ({
     fontFamily: "inherit",
     fontSize: "inherit",
     padding: "10px 16px",
-    borderRadius: "12px",
+    borderRadius: "8px",
     cursor: "pointer",
     minWidth: "140px",
     display: "flex",
@@ -143,10 +143,9 @@ export const DifficultyDropdown: React.FC<DifficultyDropdownProps> = ({
               top: "100%",
               left: 0,
               right: 0,
-              background:
-                "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%)",
-              border: "1px solid rgba(255, 255, 255, 0.4)",
-              borderRadius: "12px",
+              backgroundColor: "#ffffff",
+              border: "1px solid rgba(255, 255, 255, 0.7)",
+              borderRadius: "8px",
               zIndex: 10,
               marginTop: "8px",
               overflow: "hidden",
@@ -174,7 +173,7 @@ export const DifficultyDropdown: React.FC<DifficultyDropdownProps> = ({
                   backgroundColor:
                     hoveredOption === opt
                       ? "rgba(0, 0, 0, 0.1)"
-                      : "transparent",
+                      : "#ffffff",
                   color: "#1f2937",
                   fontWeight: "600",
                   transition: "all 0.2s ease",
