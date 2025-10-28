@@ -15,7 +15,6 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Topic Solitaire",
   description:
     "A strategic card game where you organize cards by matching them to their topics. Think solitaire meets categorization!",
   manifest: "/manifest.json",
